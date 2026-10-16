@@ -66,7 +66,7 @@ import java.util.Queue;
         }
         
         else if (!hasBlueKey()){
-            int[] keyLocation=dunngeon.findTile("🔵");
+            int[] keyLocation=dungeon.findTile("🔵");
             targetRow=keyLocation[0];
             targetCol=keyLocation[1];
             
