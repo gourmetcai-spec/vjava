@@ -25,7 +25,7 @@ public class MyProgram
         }
         boolean playing=true;
         while (playing){
-        dungeon.displayBoard(player);
+        dungeon.displayBoard();
         System.out.println("you have "+timer.getMovesRemaining()+" moves remaining");
  
     String move;

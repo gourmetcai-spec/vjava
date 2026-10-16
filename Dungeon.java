@@ -134,7 +134,8 @@ public void checkTile(Player player, Timer timer){
         int playerRow=player.getRow();
         int playerCol=player.getCol();
         
-        for (int row=0;col<board[row].length;col++){
+        for (int row=0; row < board.length; row++)
+            for (int col=0;col<board[row].length;col++){
             if (Math.abs(row-playerRow)<=2&&Math.abs(col=playerCol)<=2){
                 System.out.print(board[row][col]+" ");
             }
