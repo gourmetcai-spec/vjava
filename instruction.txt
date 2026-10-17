@@ -1,0 +1,67 @@
+DUNGEON ESCAPE - PLAYER INSTRUCTIONS
+
+GOAL
+Guide your player (🧍) through the dungeon to the finish flag (🏁).
+Collect the red key (🔴) to pass the red door (🟥), then collect the
+blue key (🔵) to pass the blue door (🟦) on the way to the exit.
+Reach the flag before you run out of moves or health.
+
+STARTING A GAME
+Run MyProgram in your Java environment using a terminal that displays emoji.
+At the "how do you want to play?" prompt, enter one number and press Enter:
+  1 - Human player: you choose each move.
+  2 - Computer player: the computer plays automatically.
+
+If you choose the computer, enter a difficulty and press Enter:
+  1 - Easy: randomly chooses a legal neighboring tile.
+  2 - Hard: chooses legal moves toward the next key, door, or exit.
+Hard mode can revisit tiles and does not guarantee an escape.
+After difficulty selection, no more input is needed for a computer game.
+
+HOW TO MOVE
+When "enter how to move" appears, type one letter and press Enter:
+  W - Move up one tile.
+  A - Move left one tile.
+  S - Move down one tile.
+  D - Move right one tile.
+Uppercase and lowercase letters both work. Enter one move at a time,
+without spaces. For example, enter D and press Enter to move right.
+You cannot move diagonally, through walls, outside the board, or through
+a colored door without its matching key. A blocked move leaves you in
+place and costs no moves. An invalid letter also costs no moves; try again.
+
+BOARD SYMBOLS AND ITEMS
+  🧍 Player       Your current position.
+  ⬜ Floor        An open tile you can enter.
+  ⬛ Wall         Blocks movement.
+  🔴 Red key      Pick up by entering its tile; unlocks the red door.
+  🟥 Red door     Requires the red key to enter.
+  🔵 Blue key     Pick up by entering its tile; unlocks the blue door.
+  🟦 Blue door    Requires the blue key to enter.
+  🧪 Potion       Restores 25 health when you enter its tile.
+  ⚡ Speed item   Adds 5 moves when you enter its tile.
+  🪤 Trap         Removes 20 health when you enter its tile.
+  🏁 Finish flag  Enter this tile to escape and win.
+  👾 Monster and 💰 treasure are displayed but have no effect in this version.
+
+MOVES AND HEALTH
+You start with 25 moves and 100 health. Every successful move costs one
+move. The console displays the remaining move count before each turn.
+The speed item adds 5 moves after the movement cost, for a net gain of 4
+on that turn. Potion healing can raise health above 100 in this version.
+Keys and tile effects activate automatically when you step onto them.
+After you leave an item or trap tile, it becomes floor; its effect does
+not repeat when you return.
+
+WINNING AND LOSING
+Win: enter the finish flag. The console says you escaped the dungeon.
+Lose: your remaining moves reach zero, or your health reaches zero or less,
+before you escape. The console prints the reason and the game ends.
+Reaching the flag on your last move still counts as a win.
+To play again, run MyProgram again and choose a player mode.
+
+TIP
+Plan your route before moving: backtracking uses your limited moves.
+Watch for keys, avoid traps where possible, and use the speed item for
+extra moves. The current 25-move limit makes the dungeon challenging;
+these instructions describe the goal, not a guaranteed winning route.
