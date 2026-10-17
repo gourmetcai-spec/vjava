@@ -1,8 +1,17 @@
 import java.util.Scanner;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.io.IOException;
 public class MyProgram
 {
     public static void main(String[] args)
     {
+        try {
+            System.out.println(Files.readString(Path.of("instruction.txt")));
+        }
+        catch (IOException e) {
+            System.err.println("Could not read instruction.txt. Run the game from the project directory.");
+        }
         Player player;
         Dungeon dungeon=new Dungeon();
         Timer timer=new Timer(25);
