@@ -13,12 +13,25 @@ import java.util.Queue;
 
     
     
+    /* COMPUTER PLAYER - DIFFICULTY
+     * Stores the human's difficulty selection supplied by MyProgram.
+     * Level 1 is easy (random legal moves); level 2 is hard (goal-directed
+     * greedy moves). Both start with the same inherited position, health and
+     * key/door flags. Difficulty changes decision-making, not player statistics.
+     */
     public ComputerPlayer(int startRow, int startCol, int difficulty){
         super(startRow,startCol);
         this.difficulty=difficulty;
         random=new Random();
     }
     //computer randomly chooses one of the 4 mvmt directions: wasd. makes the computer less strategic
+    /* COMPUTER PLAYER - STRATEGY
+     * Easy difficulty builds a list of legal W/S/A/D moves using the dungeon's
+     * bounds, wall and colored-door rules, then selects uniformly from that
+     * list. It does not consider objectives, previous positions or hazards.
+     * Assumes at least one legal neighbor; an empty list causes nextInt(0)
+     * to throw rather than providing a wait or game-over action.
+     */
     public String chooseRandomMove(Dungeon dungeon){
         ArrayList<String> validMoves=new ArrayList<>();
         if(dungeon.isValidMove(getRow()-1,getCol(),this)){
@@ -41,6 +54,12 @@ import java.util.Queue;
     }
     
     
+    /* COMPUTER PLAYER - DIFFICULTY
+     * Dispatches each turn: 1 selects random movement; every other integer
+     * selects the strategic method. The menu advertises 1 and 2, but the code
+     * does not validate the range. This method returns a direction only;
+     * MyProgram performs the movement and turn updates.
+     */
     public String chooseMove(Dungeon dungeon){
         if (difficulty==1){
             return chooseRandomMove(dungeon);
@@ -49,6 +68,19 @@ import java.util.Queue;
     
 }
         
+    /* COMPUTER PLAYER - STRATEGY
+     * Hard difficulty selects the next objective from inherited progress:
+     * red key -> red door -> blue key -> blue door -> exit at (17,18).
+     * It examines legal adjacent moves and chooses the smallest Manhattan
+     * distance (absolute row difference + absolute column difference) to that
+     * objective. Equal distances keep the first move in W,S,A,D order.
+     * Unlike easy mode, choices depend on the objective and player state.
+     * This is a one-step greedy strategy: it does not plan around walls,
+     * remember visited positions, avoid traps, or guarantee escape. It may
+     * revisit cells. Expected key/door tiles must exist for findTile lookups.
+     * If no candidate is found it calls the random method, which also requires
+     * a legal neighbor. The breadth-first findPath helper below is not called.
+     */
     public String chooseStrategicMove(Dungeon dungeon){
         int targetRow;
         int targetCol;
@@ -111,6 +143,15 @@ import java.util.Queue;
         return bestMove;
     }
     
+    /* COMPUTER PLAYER - STRATEGY
+     * Optional breadth-first search helper, currently unused by chooseMove
+     * and chooseStrategicMove. It explores unvisited legal cells on the fixed
+     * 20-by-20 board, storing direction strings alongside queued positions.
+     * Returns the first direction of a shortest reachable path, or null when
+     * already at the target or no path exists. Search does not move the player
+     * or simulate collecting keys, so door checks use current ownership only.
+     * Its existence does not mean hard difficulty uses shortest-path search.
+     */
     public String findPath(Dungeon dungeon,int targetRow,int targetCol){
         int startRow=getRow();
         int startCol=getCol();
