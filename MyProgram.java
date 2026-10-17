@@ -5,11 +5,11 @@ public class MyProgram
     {
         Player player;
         Dungeon dungeon=new Dungeon();
-        Timer timer=new Timer(25);
+        Timer timer=new Timer(25000);
         Scanner input=new Scanner(System.in);
         System.out.println("how do you want to play?");
-        System.out.println("human player");
-        System.out.println("computer player");
+        System.out.println("1. human player");
+        System.out.println("2. computer player");
         
         String playerChoice=input.nextLine();
         if (playerChoice.equals("2")){
