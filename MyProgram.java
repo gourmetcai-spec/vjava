@@ -20,8 +20,13 @@ public class MyProgram
             int difficulty=Integer.parseInt(input.nextLine());
             player=new ComputerPlayer(1,1,difficulty);
         }
-        else{
+        else if(playerChoice.equals("1"))
+        {
             player=new Player(1,1);
+        }
+        else{
+            System.out.println("invalid input, quit");
+            return;
         }
         boolean playing=true;
         while (playing){
